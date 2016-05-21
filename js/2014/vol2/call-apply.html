@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>BrushClover JSサンプル - call/applyによるthisの指定</title>
+</head>
+<body>
+<script type="text/javascript">
+var ajax = document.createElement('button');
+ajax.id = ajax.innerHTML = 'ajax';
+document.body.appendChild(ajax);
+ 
+ajax.onclick = function() {
+    // イベントハンドラを設定した要素を格納
+    var that = this;
+ 
+    xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                // callでchangeAjaxButtonText関数内のthisを「that」明示だと指定する
+                changeAjaxButtonText.call(that, xhr.responseText);
+
+                // applyでchangeAjaxButtonText関数内のthisを「that」明示だと指定する
+                changeAjaxButtonText.apply(that, [xhr.responseText]);
+            }
+        }
+    }
+ 
+    xhr.open('GET', './echo.html');
+    xhr.send();
+}
+ 
+// call、applyで呼び出すコールバック関数
+function changeAjaxButtonText(text) {
+    // このthisはcall、applyにて指定されたオブジェクトを参照する
+    this.innerHTML += ' ' + text;
+}
+</script>
+</body>
+</html>

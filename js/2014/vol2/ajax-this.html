@@ -11,25 +11,24 @@ ajax.id = ajax.innerHTML = 'ajax';
 document.body.appendChild(ajax);
  
 ajax.onclick = function() {
-    //イベントハンドラを設定した要素を格納
+    // イベントハンドラを設定した要素を格納
     var that = this;
  
     xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+
+    // Ajaxコールバック関数の定義
+    // HTTPレスポインスを受け取るとコールバックが呼ばれる
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
-            if (xhr.status = 200) {
-                changeAjaxButtonText.call(that, xhr.responseText);
+            if (xhr.status == 200) {
+                // 「that」でクリック時のthis(button要素)を参照してテキストを挿入
+                that.innerHTML = xhr.responseText;
             }
         }
     }
  
     xhr.open('GET', './echo.html');
     xhr.send();
-}
- 
-//コールバック関数
-function changeAjaxButtonText(text) {
-    this.innerHTML = text;
 }
 </script>
 </body>
