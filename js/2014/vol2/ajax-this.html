@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>BrushClover JSサンプル - Ajaxのコールバック関数でのthis</title>
+</head>
+<body>
+<script type="text/javascript">
+var ajax = document.createElement('button');
+ajax.id = ajax.innerHTML = 'ajax';
+document.body.appendChild(ajax);
+ 
+ajax.onclick = function() {
+    //イベントハンドラを設定した要素を格納
+    var that = this;
+ 
+    xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status = 200) {
+                changeAjaxButtonText.call(that, xhr.responseText);
+            }
+        }
+    }
+ 
+    xhr.open('GET', './echo.html');
+    xhr.send();
+}
+ 
+//コールバック関数
+function changeAjaxButtonText(text) {
+    this.innerHTML = text;
+}
+</script>
+</body>
+</html>
