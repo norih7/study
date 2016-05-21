@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>new</title>
+</head>
+<body>
+<h3>#result</h3>
+<div id="result"></div>
+<script type="text/javascript">
+//出力用フィールの取得
+var result = document.getElementById('result');
+
+//基本的なオブジェクトのひな形
+function BaseObject(params) {
+    this.creator = params.creator;
+}
+
+//引数用オブジェクトを渡してオブジェトを作成
+var params = {
+    creator : 'iced'
+}
+var iced_obj = new BaseObject(params);
+result.innerHTML = iced_obj.creator + '<br>';
+
+//別オブジェクトを作成
+var params = {
+    creator : 'water'
+}
+var water_obj = new BaseObject(params);
+result.innerHTML += water_obj.creator + '<br>';
+</script>
+</body>
+</html>
