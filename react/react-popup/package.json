@@ -1,0 +1,33 @@
+{
+  "name": "react-popup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "flow": "flow"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.1.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.11.1",
+    "eslint": "^4.6.1",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-flowtype": "^2.39.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-react": "^7.0.1",
+    "flow-bin": "^0.56.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.6.0",
+    "webpack": "^2.1.5"
+  }
+}

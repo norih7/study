@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>React Test</title>
+<style type="text/css">
+.hold {
+    position: absolute;
+    cursor: move;
+}
+
+.hold-left-top {
+    top: 0;
+    left: 0;
+}
+
+.hold-right-top {
+    top: 0;
+    right: 0;
+}
+
+.hold-left-bottom {
+    bottom: 0;
+    left: 0;
+}
+
+.hold-right-bottom {
+    bottom: -1px;
+    right: -1px;
+}
+
+.resizeable .content {
+    padding: 20px 15px;
+}
+
+.form-position-bottom {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+}
+
+.resizeable .close {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 50px;
+    line-height: 21px;
+    background: #555;
+    color: #fff;
+    text-align: center;
+}
+
+.resizeable .close:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.this-side {
+    z-index: 1 !important;
+}
+
+</style>
+</head>
+<body>
+<div class="content"></div>
+<script src="bundle.js"></script>
+</body>
+</html>
