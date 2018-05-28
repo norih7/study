@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>prototype</title>
+</head>
+<body>
+<h3>#result</h3>
+<div id="result"></div>
+<script type="text/javascript">
+//出力用フィールの取得
+var result = document.getElementById('result');
+
+//基本的なオブジェクトの雛型
+function BaseObject(params) {
+    this.creator = params.creator;
+}
+
+//拡張オブジェクトの雛型
+function ExtendedObject() {
+    this.text = 'create!';
+}
+
+//BaseObjectの継承
+var params = {
+    creator : 'iced'
+}
+ExtendedObject.prototype = new BaseObject(params);
+
+//継承したオブジェクトの作成
+var obj = new ExtendedObject();
+result.innerHTML  = obj.creator + '<br>';
+result.innerHTML += obj.text + '<br>';
+
+
+console.log(obj);
+</script>
+</body>
+</html>

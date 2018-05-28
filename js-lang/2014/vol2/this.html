@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>thisの挙動確認</title>
+</head>
+<body>
+<h3>#result</h3>
+<div id="result"></div>
+<script type="text/javascript">
+// 出力用フィールの取得
+var result = document.getElementById('result');
+
+// グローバル領域でのthis挙動
+// 出力結果 : 「this.property (グローバル領域) : window_property」
+var property = 'window_property';
+result.innerHTML = 'this.property (グローバル領域) : ' + this.property + '<br>';
+
+// 関数呼び出しでのthis挙動
+// 出力結果 : this.property (関数呼び出し) : window_property
+function echoThisProperty() {
+  var property = 'function_property';
+  result.innerHTML += 'this.property (関数呼び出し) : ' + this.property + '<br>';
+}
+
+echoThisProperty();
+
+// 関数リテラル呼び出しでのthis挙動
+// 出力結果 : this.property (関数リテラル呼び出し)  : window_property
+echoThisPropertyLiteral = function() {
+  var property = 'function_property';
+  result.innerHTML += 'this.property (関数リテラル呼び出し) : ' + this.property + '<br>';
+}
+
+echoThisPropertyLiteral();
+
+// メソッド呼び出しでのthis挙動
+// 出力結果 : this.property (メソッド呼び出し) : test_property
+var test_obj = {
+  property : 'test_property',
+  func : function() {
+    return this.property;
+  }
+}
+result.innerHTML += 'this.property (メソッド呼び出し) : ' + test_obj.func() + '<br>';
+
+// イベントハンドラのthis挙動 (イベント元の要素のid名を出力)
+// 出力結果 : this.id (イベントハンドラ) : click
+var button = document.createElement('button');
+button.id = button.innerHTML = 'click';
+document.body.appendChild(button);
+button.onclick = function() {
+  result.innerHTML += 'this.id (イベントハンドラ) : ' + this.id + '<br>';
+}
+</script>
+</body>
+</html>
