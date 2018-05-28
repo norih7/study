@@ -1,0 +1,46 @@
+- name: be sure httpd is installd
+  become: yes
+  yum: name=httpd state=present
+
+- name: be sure https is running and enabled
+  become: yes
+  service: name=httpd state=started enabled=yes
+#    - name: rpm update
+#      command: rpm -Uvh https://rpm.nodesource.com/pub_4.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
+#    - name: prepare node.js
+#      yum: name=epel-release state=present
+#    - name: install node.js
+#      yum: name=nodejs state=present
+
+- name: install epel-release repository
+  become: yes
+  yum: name=epel-release state=present
+#    - name: install remi repository
+#      command: rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+#    - name: install php7
+#      command: yum -y --enablerepo=remi-php70,epel install php-fpm php-gd php-gmp php-mbstring php-mcrypt php-opcache php-pdo php-pear-MDB2-Driver-mysqli php-pecl-memcached php-pecl-msgpack php-xml php-devel php-gd php-intl
+
+- name: check install composer
+  command: which composera
+  ignore_errors: True
+  register: composer_path
+
+    # - name: debug var
+    #   debug: var=composer_path
+
+- name: when test
+  debug: var=composer_path
+  when: composer_path|failed
+
+- name: install composer
+  shell: wget https://getcomposer.org/download/1.4.2/composer.phar
+
+- name: cdmod composer
+  shell: chmod +x composer.phar
+
+- name: mv composer
+  become: True
+  shell: mv composer.phar /usr/local/bin/composer
+
+#    - name: install td-agent
+#      shell: curl http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
