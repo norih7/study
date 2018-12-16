@@ -1,0 +1,11 @@
+{
+  "name": "root",
+  "private": true,
+  "dependencies": {
+    "react-popup": "git+ssh://git@github.com:norih7/react.git",
+    "study": "git@github.com:norih7/study.git"
+  },
+  "devDependencies": {
+    "lerna": "^3.4.0"
+  }
+}
